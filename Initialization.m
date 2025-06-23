@@ -21,8 +21,13 @@ CR = k / n; % Coding rate of the channel coding
 %%%%%%%%%%%% Source
 x1 = randi(10,1,1); % Use last digit in s-number of 1st student instead
 x2 = randi(10,1,1); % Use last digit in s-number of 2nd student instead
-x3 = randi(10,1,1); % Use last digit in s-number of 3rd student instead
-x4 = randi(10,1,1); % Use last digit in s-number of 4th student instead
+% x3 = randi(10,1,1); % Use last digit in s-number of 3rd student instead
+% x4 = randi(10,1,1); % Use last digit in s-number of 4th student instead
+% x1 = ; % Veerle
+% x2 = ; % Rolf
+x3 = 2; % Pieter
+x4 = 3; % Berend
+
 studentIDs = 1 * x1 + 2 * x2 + 3 * x3 + 4 * x4;
 Nb = NumOfSubcarriers * BitPerSymbol * k * 100000; % Number of information bits to be simulated (i.e., transmitted)
 rng( studentIDs , 'twister' );
