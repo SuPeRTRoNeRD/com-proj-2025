@@ -13,9 +13,9 @@ ModType = 'BPSK'; % Make sure you choose the correct corresponding BitPerSymbol 
 BitPerSymbol = 1; % Number of channel bits per channel symbol
 
 %%%%%%%%%%%% Channel coding
-EncType = 'NONE'; % Channel coding type. Make sure you choose the correct corresponding k and n in the next two lines
+EncType = 'REP'; % Channel coding type. Make sure you choose the correct corresponding k and n in the next two lines
 k = 1; % Uncoded word length in information bits
-n = 2; % Coded word length in channel bits
+n = 3; % Coded word length in channel bits
 CR = k / n; % Coding rate of the channel coding
 
 %%%%%%%%%%%% Source
