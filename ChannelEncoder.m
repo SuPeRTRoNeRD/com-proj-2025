@@ -11,6 +11,8 @@ function y = ChannelEncoder( u , k , n , EncType )
         u = reshape(u, k, [])'; % Convert u into a vector of words
         y = mod(u * G, 2);  % Encode the words by adding parity bits
         y = reshape(y', 1,  []); % Convert back to array
+    elseif strcmp (EncType, 'HAMM')
+        y = encode(u, n, k, 'hamming/binary'); % MATLAB internal function
     end
     
     % To ensure dimension compatibility

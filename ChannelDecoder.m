@@ -18,6 +18,8 @@ function y = ChannelDecoder( u , n , k , EncType )
         Retrieval_mat = G;  % Hamming generator matrix
         Retrieval_mat(:, 1:r) = 0;  % With parity bits set to zero
         y = reshape(Retrieval_mat * corrected_code, 1, []); % Retrieve original words
+    elseif strcmp( EncType, 'HAMM')
+        y = decode(u, n, k, 'hamming/binary'); % MATLAB internal function
     end
     
     % To ensure dimension compatibility
