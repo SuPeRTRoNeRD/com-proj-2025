@@ -2,11 +2,11 @@
 % SamplePerSymbol, NumOfSubcarriers and BitPerSymbol should be all in the form of 2^m, where m is a positive integer
 
 %%%%%%%%%%%% AWGN Channel
-EbNodB = 4.32*100; % SNR per channel bit in dB
+EbNodB = 4.32*1; % SNR per channel bit in dB
 
 %%%%%%%%%%%% Upsampling and Pulse Shaping | OFDM Modulation
 SamplePerSymbol = 32; % Number of samples per symbol of the pulse shaping filter > 4
-NumOfSubcarriers = 1; % Number of OFDM subcarriers = 4 if OFDM is used. Otherwise, it should be set to 1
+NumOfSubcarriers = 4; % Number of OFDM subcarriers = 4 if OFDM is used. Otherwise, it should be set to 1
 
 %%%%%%%%%%%% Mapping (A.K.A. equivalent complex BB modulation)
 ModType = 'BPSK'; % Make sure you choose the correct corresponding BitPerSymbol in the next line
