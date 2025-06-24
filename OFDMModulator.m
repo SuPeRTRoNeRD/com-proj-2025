@@ -7,39 +7,34 @@ function y = OFDMModulator( u , SamplePerSymbol , NumOfSubcarriers , BitPerSymbo
     % Subcarrier symbol interval = OFDM symbol interval.
 	% Rb = input bit rate of overall system
     
-	% Rs = Insert your code here                        % input symbol rate of overall system
-    % Rsub = Insert your code here                      % subcarrier symbol rate
-    % SubcarrierSpacing = Insert your code here         % subcarrier spacing
-    % SubcarrierFreqVector = Insert your code here      % frequencies of all subcarriers (note: NumOfSubcarriers = 4)
+	Rs = Rb/BitPerSymbol;               % input symbol rate of overall system
+    Rsub = Rs/NumOfSubcarriers;         % subcarrier symbol rate
+    SubcarrierSpacing = Rsub;           % subcarrier spacing
+    SubcarrierFreqVector = -(NumOfSubcarriers-1)/2*SubcarrierSpacing:SubcarrierSpacing:(NumOfSubcarriers-1)/2*SubcarrierSpacing;
+    % frequencies of all subcarriers (note: NumOfSubcarriers = 4)
 
-    % Tofdm = Insert your code here                     % OFDM symbol interval
-    % Fs = Insert your code here                        % sampling frequency
-    % Ts = Insert your code here                        % sampling interval
-    % Tframe = Insert your code here                    % the time needed for all bits to be sent
-    % t = Insert your code here                         % time vector
+    Tofdm = 1/Rsub;                                         % OFDM symbol interval
+    Fs = SamplePerSymbol*Rsub;                                % sampling frequency
+    Ts = 1/Fs;                                              % sampling interval
+    Tframe = length(u)/Rs; % the time needed for all bits to be sent
+    t = 0:Ts:Tframe-Ts;                                     % time vector
        
     % serial to parallel (Insert your code here)
-    
+    b_parallel=reshape(u,NumOfSubcarriers,length(u)/NumOfSubcarriers);
     
     % 1st branch for 1st subcarrier (Insert your code here)
-    %     For upsampling, use: 
-    %     repelem( xxx , SamplePerSymbol );
-    %     Fill "xxx" with the sequence of symbols corresponding to the first branch.
-    %     Then use the upsampled signal for multplication with complex exponential
-    %     to generate the signal of the first branch (first subcarrier)
-    
-    
-    % 2nd branch for 2nd subcarrier (Insert your code here)
-    
-       
-    % 3rd branch for 3rd subcarrier (Insert your code here)
-     
-    
-    % 4th branch for 4th subcarrier (Insert your code here)
-    
-    
-    % forming output (Insert your code here)
-    
+    %b_up=zeros(NumOfSubcarriers,length(t));
+    y = zeros(1,length(t));
+
+    for i=1:NumOfSubcarriers
+        %Upsample (Rectangular Pulse)
+        b_up=repelem(b_parallel(i,:),SamplePerSymbol);
+        epower=exp(1i*2*pi*SubcarrierFreqVector(i)*t);
+        % Multiply by complex exponential
+        b_mod=epower.*b_up;
+        % Accumulate the modulated signals for each subcarrier
+        y = y + b_mod;
+    end
     
     % To ensure dimension compatibility
     y = y(:).';
