@@ -6,15 +6,11 @@ function y = ChannelEncoder( u , k , n , EncType )
     elseif strcmp (EncType, 'REP')
         y = repelem(u, n);
     elseif strcmp (EncType, 'HAM')
-        % Generate parity-check matrix H and Hamming generator matrix G
-        % k = uncoded = 4
-        % n = coded = 7
-        p = n - k; % Number of parity bits
-        [~, G] = hammgen(p);
-        u = reshape(u, k, [])';
-        y = u * G;
-        y = reshape(y', 1,  []);
-        y = mod(y, 2);
+        r = n - k; % Number of parity bits
+        [~, G] = hammgen(r); % Generate Hamming generator matrix G
+        u = reshape(u, k, [])'; % Convert u into a vector of words
+        y = mod(u * G, 2);  % Encode the words by adding parity bits
+        y = reshape(y', 1,  []); % Convert back to array
     end
     
     % To ensure dimension compatibility
