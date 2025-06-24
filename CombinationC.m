@@ -1,6 +1,6 @@
 %% Initialization
 %clear;clc;close all;
-Initialization;
+% Initialization;
 %% Source
 sTx = randi( 2 , 1 , Nb ) - 1;
 %% Channel Encoding

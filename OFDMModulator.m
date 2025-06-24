@@ -13,11 +13,10 @@ function y = OFDMModulator( u , SamplePerSymbol , NumOfSubcarriers , BitPerSymbo
     SubcarrierFreqVector = -(NumOfSubcarriers-1)/2*SubcarrierSpacing:SubcarrierSpacing:(NumOfSubcarriers-1)/2*SubcarrierSpacing;
     % frequencies of all subcarriers (note: NumOfSubcarriers = 4)
 
-    Tofdm = 1/Rsub;                                         % OFDM symbol interval
-    Fs = SamplePerSymbol*Rsub;                                % sampling frequency
-    Ts = 1/Fs;                                              % sampling interval
+    Fs = SamplePerSymbol*Rsub;                        % sampling frequency
+    Ts = 1/Fs;                                        % sampling interval
     Tframe = length(u)/Rs; % the time needed for all bits to be sent
-    t = 0:Ts:Tframe-Ts;                                     % time vector
+    t = 0:Ts:Tframe-Ts;                               % time vector
    
     % serial to parallel
     b_parallel=reshape(u,NumOfSubcarriers,length(u)/NumOfSubcarriers);

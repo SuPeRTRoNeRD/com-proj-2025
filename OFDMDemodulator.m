@@ -13,11 +13,10 @@ function y = OFDMDemodulator( u , SamplePerSymbol , NumOfSubcarriers , BitPerSym
     SubcarrierFreqVector = -(NumOfSubcarriers-1)/2*SubcarrierSpacing:SubcarrierSpacing:(NumOfSubcarriers-1)/2*SubcarrierSpacing;
     % frequencies of all subcarriers (note: NumOfSubcarriers = 4)
 
-    Tofdm = 1/Rsub;                                         % OFDM symbol interval
-    Fs = SamplePerSymbol*Rsub;                                % sampling frequency
-    Ts = 1/Fs;                                              % sampling interval
+    Fs = SamplePerSymbol*Rsub;                        % sampling frequency
+    Ts = 1/Fs;                                        % sampling interval
     Tframe = length(u)*Ts; % the time needed for all bits to be sent
-    t = 0:Ts:Tframe-Ts;                                     % time vector
+    t = 0:Ts:Tframe-Ts;                               % time vector
 
     %Preallocate
     sequences=zeros(NumOfSubcarriers,length(u)/SamplePerSymbol);
