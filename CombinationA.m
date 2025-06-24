@@ -17,4 +17,4 @@ s6 = OFDMDemodulator( s5 , SamplePerSymbol , NumOfSubcarriers , BitPerSymbol , R
 %% De-mapping (equivalent BB demodulation)
 sRx = DeMapper( s6 , ModType );
 %% BER calculation
-BER=sum(sRx~=sTx)/Nb
+BER=sum(sRx~=sTx)/Nb;

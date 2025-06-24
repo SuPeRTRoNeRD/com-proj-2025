@@ -21,4 +21,4 @@ s7 = DeMapper( s6 , ModType );
 %% Channel Decoding
 sRx = ChannelDecoder( s7 , n , k , EncType );
 %% BER calculation
-BER=sum(sRx~=sTx)/Nb
+BER=sum(sRx~=sTx)/Nb;
